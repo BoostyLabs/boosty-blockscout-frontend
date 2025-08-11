@@ -22,9 +22,10 @@ import * as tokenStubs from 'stubs/token';
 import { getTokenHoldersStub } from 'stubs/token';
 import { generateListStub } from 'stubs/utils';
 import RoutedTabs from 'toolkit/components/RoutedTabs/RoutedTabs';
+import Address3rdPartyWidgets from 'ui/address/Address3rdPartyWidgets';
+import useAddress3rdPartyWidgets from 'ui/address/address3rdPartyWidgets/useAddress3rdPartyWidgets';
 import AddressContract from 'ui/address/AddressContract';
 import AddressCsvExportLink from 'ui/address/AddressCsvExportLink';
-import useContractTabs from 'ui/address/contract/useContractTabs';
 import { CONTRACT_TAB_IDS } from 'ui/address/contract/utils';
 import TextAd from 'ui/shared/ad/TextAd';
 import IconSvg from 'ui/shared/IconSvg';
@@ -162,8 +163,12 @@ const TokenPageContent = () => {
     },
   });
 
-  const isLoading = tokenQuery.isPlaceholderData || addressQuery.isPlaceholderData;
-  const contractTabs = useContractTabs(addressQuery.data, addressQuery.isPlaceholderData);
+  const address3rdPartyWidgets = useAddress3rdPartyWidgets('token', false, isQueryEnabled);
+
+  const isLoading =
+    tokenQuery.isPlaceholderData ||
+    addressQuery.isPlaceholderData ||
+    (address3rdPartyWidgets.isEnabled && address3rdPartyWidgets.configQuery.isPlaceholderData);
 
   const tabs: Array<TabItemRegular> = [
     hasInventoryTab ? {
@@ -195,8 +200,14 @@ const TokenPageContent = () => {
 
         return 'Contract';
       },
-      component: <AddressContract tabs={ contractTabs.tabs } isLoading={ contractTabs.isLoading } shouldRender={ !isLoading }/>,
+      component: <AddressContract addressData={ addressQuery.data } isLoading={ isLoading }/>,
       subTabs: CONTRACT_TAB_IDS,
+    } : undefined,
+    (address3rdPartyWidgets.isEnabled && address3rdPartyWidgets.items.length > 0) ? {
+      id: 'widgets',
+      title: 'Widgets',
+      count: address3rdPartyWidgets.items.length,
+      component: <Address3rdPartyWidgets shouldRender={ !isLoading } addressType="token" showAll/>,
     } : undefined,
   ].filter(Boolean);
 
@@ -236,13 +247,14 @@ const TokenPageContent = () => {
     return (
       <>
         { (tab === 'token_transfers' || tab === '') && (
-          <TokenAdvancedFilterLink token={ tokenQuery.data }/>
+          <TokenAdvancedFilterLink token={ tokenQuery.data } ml={ 6 }/>
         ) }
         { tab === 'holders' && (
           <AddressCsvExportLink
             address={ hashString }
             params={{ type: 'holders' }}
             isLoading={ pagination?.isLoading }
+            ml={ 6 }
           />
         ) }
         { pagination?.isVisible && <Pagination { ...pagination }/> }
