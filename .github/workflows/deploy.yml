@@ -61,7 +61,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push ${{ env.ECR_URL_FRONT }}:latest
+          docker push ${{ env.ECR_URL_FRONT }}:july
   
   
 
