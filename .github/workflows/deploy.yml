@@ -57,7 +57,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ env.ECR_URL_FRONT }}:latest -f Dockerfile .
+          docker build -t ${{ env.ECR_URL_FRONT }}:july -f Dockerfile .
 
       - name: Push Docker image
         run: |
