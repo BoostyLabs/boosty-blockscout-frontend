@@ -78,10 +78,10 @@ jobs:
           username: ${{ env.VM_USER }}
           key: ${{ env.SSH_PRIVATE_KEY }}
           script: |
-            cd blockscout/docker-compose
+            cd boosty-blockscout/docker-compose
             ###git checkout ${{ inputs.environment }}
             ###git pull origin ${{ inputs.environment }}
             docker-compose pull
             docker-compose down
-            docker-compose up -d --build
+            docker-compose up -d ##--build
             ###docker-compose restart        

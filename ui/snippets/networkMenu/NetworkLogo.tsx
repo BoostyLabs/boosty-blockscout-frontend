@@ -68,7 +68,7 @@ const NetworkLogo = ({ isCollapsed, onClick, className }: Props) => {
         objectFit="contain"
         objectPosition="left"
       />
-      { /* small logo */ }
+      { /* small logo  */ }
       <Image
         w="100%"
         h="100%"
