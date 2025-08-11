@@ -12,6 +12,7 @@ const rewrites = require('./nextjs/rewrites');
 
 /** @type {import('next').NextConfig} */
 const moduleExports = {
+  crossOrigin: 'anonymous',
   transpilePackages: [
     'react-syntax-highlighter',
     'swagger-client',
