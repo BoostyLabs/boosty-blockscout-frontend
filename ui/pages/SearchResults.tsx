@@ -259,7 +259,7 @@ const SearchResultsPageContent = () => {
           </AppErrorBoundary>
         </Layout.MainColumn>
       </Layout.MainArea>
-      <Layout.Footer/>
+      {/* <Layout.Footer/> */}
     </>
   );
 };
