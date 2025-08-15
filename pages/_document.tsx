@@ -52,7 +52,7 @@ class MyDocument extends Document {
           ) }
 
           { /* FAVICON */ }
-          <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
+          <link rel="icon" type="image/svg+xml" href="/static/favicon.ico"/>
           <link rel="preload" as="image" href={ svgSprite.href }/>
         </Head>
         <body>
