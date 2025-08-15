@@ -79,7 +79,7 @@ jobs:
           username: ${{ env.VM_USER }}
           key: ${{ env.SSH_PRIVATE_KEY }}
           script: |
-            cd boosty-blockscout/docker-compose
+            cd fix-after_fork_blocksckout/blockscout/docker-compose
             ###git checkout ${{ inputs.environment }}
             ###git pull origin ${{ inputs.environment }}
             docker compose up -d --force-recreate --no-deps frontend       
