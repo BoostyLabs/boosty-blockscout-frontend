@@ -57,11 +57,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ env.ECR_URL_FRONT }}:august -f Dockerfile .
+          docker build -t ${{ env.ECR_URL_FRONT }}:august_15 -f Dockerfile .
 
       - name: Push Docker image
         run: |
-          docker push ${{ env.ECR_URL_FRONT }}:august
+          docker push ${{ env.ECR_URL_FRONT }}:august_15
   
   
 
